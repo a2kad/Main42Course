@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:06:08 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/18 13:08:53 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/18 19:41:40 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,17 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	
+	char	*d;
+	char	*s;
+	size_t	i;
+
+	d = (char *)dest;
+	s = (char *)src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
 }
