@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:32:42 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/17 13:57:39 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:53:59 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int		i;
-	unsigned int		j;
-	char	*str;
+	unsigned int	i;
+	unsigned int	j;
+	char		*str;
 
 	i = 0;
 	j = 0;
