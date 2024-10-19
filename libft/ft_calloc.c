@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 22:04:17 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/19 15:33:37 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/19 15:15:19 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/19 16:42:24 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
+	size_t b;
+	void *p;
 
-	if (c >= 65 && c<= 90)
+	if (nmemb == 0 || size == 0)
 	{
-		c += ('a' - 'A');
-		return (c);
+		nmemb = 1;
+		size = 1;
 	}
-	return(0);
+	b = nmemb + size;
+	p = malloc(b);
+	if (p == NULL)
+	{
+		return(NULL);
+	}
+	else
+	{
+		ft_bzero(p,b);
+	}
+	return(p);
 }

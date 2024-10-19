@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 22:04:17 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/19 15:33:37 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/19 17:16:45 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/19 17:28:12 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_tolower(int c)
+int	ft_memcmp(const void *s1, const void *s2,size_t n)
 {
-
-	if (c >= 65 && c<= 90)
-	{
-		c += ('a' - 'A');
-		return (c);
-	}
-	return(0);
+	
 }

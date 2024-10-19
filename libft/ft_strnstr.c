@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 22:04:17 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/19 15:33:37 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/19 17:16:33 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/19 17:57:42 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int	ft_tolower(int c)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 
-	if (c >= 65 && c<= 90)
-	{
-		c += ('a' - 'A');
-		return (c);
-	}
-	return(0);
 }

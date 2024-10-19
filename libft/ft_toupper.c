@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 22:03:47 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/18 22:12:53 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:33:22 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 int	ft_toupper(int c)
 {
-	char src;
-
 	if (c >= 97 && c<= 122)
 	{
-		src = (char)c;
-		src -= ('a' - 'A');
-		return (src);
-	}
-	else
-	{
+		c -= ('a' - 'A');
 		return (c);
 	}
+	return(0);
 }
