@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:17:34 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/20 18:15:16 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:17:50 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ char	ft_strdup(const char *s)
 		i++;
 	}
 	dup[i] = '\0';
-	return (dup);
+	return (*dup);
 }

@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:59:07 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/16 21:13:20 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:58:56 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_isascii(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 0 && str[i] <= 127)
+		if (str[i] >= 0 && str[i] < 127)
 			i++;
 		else
 			return (0);
