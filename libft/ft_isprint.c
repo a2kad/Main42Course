@@ -6,25 +6,15 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:35:54 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/16 21:13:10 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:28:00 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(char *str)
+int	ft_isprint(int c)
 {
-	int	i;
-
-	if (*str == '\0')
-		return (1);
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= 32) && (str[i] <= 126))
-			i++;
-		else
-			return (0);
-	}
+	if ((c >= 32) && (c <= 126))
+		return (0);
 	return (1);
 }

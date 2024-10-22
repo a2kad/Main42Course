@@ -6,20 +6,18 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 22:04:17 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/19 15:33:37 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:19:46 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
 int	ft_tolower(int c)
 {
-
-	if (c >= 65 && c<= 90)
+	if (c >= 65 && c <= 90)
 	{
 		c += ('a' - 'A');
 		return (c);
 	}
-	return(0);
+	return (0);
 }

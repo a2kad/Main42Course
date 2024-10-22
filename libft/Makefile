@@ -1,6 +1,17 @@
-LIBRARY = libft
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/22 18:38:41 by rureshet          #+#    #+#              #
+#    Updated: 2024/10/22 18:43:56 by rureshet         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-FILES =	ft_atoi \
+NAME = libft.a
+FUNCTIONS = ft_atoi \
 			ft_bzero \
 			ft_calloc \
 			ft_isalnum \
@@ -34,24 +45,23 @@ FILES =	ft_atoi \
 			ft_substr \
 			ft_tolower \
 			ft_toupper
-
-CC = gcc
+OBJ = $(patsubst %,%.o,$(FUNCTIONS))
+SRC = $(patsubst %,%.c,$(FUNCTIONS))
 CFLAGS = -Wall -Wextra -Werror
 
-OUTN = $(LIBRARY).a
-CFILES = $(FILES:%=%.c)
-OFILES = $(FILES:%=%.o)
-NAME = $(OUTN)
-
-
-$(NAME):
-	$(CC) $(FLAGS) -c $(CFILES) -I/.
-	ar -rc $(OFILES) $(OUTN)
+.PHONY: all clean fclean re
 
 all: $(NAME)
+	@true
+
+$(NAME):
+	gcc -I ./ $(CFLAGS) -c $(SRC)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(NAME)
-	rm -f $(OFILES)
+	@rm -f $(OBJ)
 
-.PHONY: all clean
+fclean: clean
+	@rm -f $(NAME)
+
+re: fclean all

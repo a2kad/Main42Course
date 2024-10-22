@@ -6,13 +6,13 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:16:45 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/20 18:08:53 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:21:32 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2,size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;
 	char	*src1;
