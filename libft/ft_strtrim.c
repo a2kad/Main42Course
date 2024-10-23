@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:41:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 20:36:07 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:36:58 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	return (str);
 }
-#include <stdio.h>
+/*#include <stdio.h>
 
 int	main(void)
 {
@@ -41,3 +41,4 @@ int	main(void)
 	char *sep = " ";
 	printf("%s", ft_strtrim(str, sep));
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:15:19 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:21:02 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:52:24 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		nmemb = 1;
 		size = 1;
 	}
-	b = nmemb + size;
+	b = nmemb * size;
 	p = malloc(b);
 	if (p == NULL)
 	{

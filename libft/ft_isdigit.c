@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:33:30 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:30:09 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:28:32 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }

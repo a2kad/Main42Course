@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:13:52 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:33:56 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:27:56 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }

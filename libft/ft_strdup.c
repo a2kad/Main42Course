@@ -6,13 +6,13 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:17:34 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:10:07 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:47:29 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	int		i;
 	int		j;
@@ -27,5 +27,5 @@ char	ft_strdup(const char *s)
 		i++;
 	}
 	dup[i] = '\0';
-	return (*dup);
+	return (dup);
 }

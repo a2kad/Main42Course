@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:16:33 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:07:18 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 21:20:38 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	if (little == NULL || little[0] == '\0' )
 		return ((char *)big);
-	while (little[i] && i < len)
+	while (big[i] && i < len)
 	{
-		if (little[i] == big[i])
+		if (little[j] == big[i])
 		{
-			while (big[i + j] == little[i] && i + j < len)
+			while (big[i + j] == little[j] && i + j < len)
 			{
-				if (little[i + j] == '\0')
+				if (little[j + 1] == '\0')
 					return ((char *)big + i);
 				j++;
 			}
@@ -37,3 +37,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	printf("%s", ft_strnstr("lorem ipsum dolor sit amet", "ipsum", 15));
+// }

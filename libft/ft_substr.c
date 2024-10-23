@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:32:42 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:12:28 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 21:59:03 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[j] = 0;
 	return (str);
 }
-/*
-#include <stdio.h>
 
-int	main(void)
-{
-	char *s = "Test123456";
-	unsigned int start = 4;
-	size_t len = 2;
+// #include <stdio.h>
 
-	printf("%s", ft_substr(s, start, len));
-}
-*/
+// int	main(void)
+// {
+// 	char *s = "lorem ipsum quia dolor sit amet,";
+// 	unsigned int start = 7;
+// 	size_t len = 10;
+
+// 	printf("%s", ft_substr(s, start, len));
+// }
+

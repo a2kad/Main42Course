@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:35:54 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:28:00 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:28:41 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_isprint(int c)
 {
 	if ((c >= 32) && (c <= 126))
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
