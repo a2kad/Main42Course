@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:20:28 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/22 19:14:48 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:03:43 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	ft_numlen(int n)
 
 char	*ft_itoa(int n)
 {
-	int		len;
-	int		num;
-	char	*str;
+	unsigned int	len;
+	unsigned int	num;
+	char			*str;
 
 	len = ft_numlen(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
@@ -43,9 +43,9 @@ char	*ft_itoa(int n)
 		num = -n;
 	}
 	else
-	{
 		num = n;
-	}
+	if (num == 0)
+		str[0] = '0';
 	str[len] = '\0';
 	while (num != 0)
 	{

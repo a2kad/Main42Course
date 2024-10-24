@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:17:34 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/23 16:47:29 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:46:47 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strdup(const char *s)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 	char	*dup;
 
 	i = 0;

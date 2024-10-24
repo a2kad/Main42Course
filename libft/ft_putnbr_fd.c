@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:44:33 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/16 21:11:13 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:55:33 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 		ft_putnbr_fd(n % 10, fd);
 	}
-	else if (n > 0 && n <= 9)
+	else if (n >= 0 && n <= 9)
 	{
 		ft_putchar_fd(n + '0', fd);
 	}

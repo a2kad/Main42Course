@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:32:42 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/23 21:59:03 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 21:31:36 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
-	unsigned int	j;
+	size_t	j;
 	char			*str;
 
 	i = 0;
 	j = 0;
+	if (!s)
+		return (NULL);
+	// if ((size_t)len > ft_strlen(s + start))
+	// 	(size_t)len = ft_strlen(s + start);
 	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (str == 0)
+	if (str == NULL)
 		return (NULL);
 	while (s[i])
 	{
-		if (i >= start && i <= (start + len))
+		if (i >= start && j <= len - 1)
 		{
 			str[j] = s[i];
 			j++;
@@ -36,14 +40,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-// #include <stdio.h>
+#include <stdio.h>
 
-// int	main(void)
-// {
-// 	char *s = "lorem ipsum quia dolor sit amet,";
-// 	unsigned int start = 7;
-// 	size_t len = 10;
-
-// 	printf("%s", ft_substr(s, start, len));
-// }
-
+int	main(void)
+{
+	printf("%s", ft_substr("aa dfsdfsd fsdfsd sfd", 2, 5));
+}

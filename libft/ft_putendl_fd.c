@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:26:02 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/16 21:12:06 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:54:20 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	ft_putendl_fd(char *s, int fd)
 		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', fd);
 }

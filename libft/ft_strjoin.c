@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:51:17 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/17 13:52:58 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:01:02 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str[i + j] = s2[j];
 		j++;
 	}
-	str[i + j + 1] = '\0';
+	str[i + j] = '\0';
 	return (str);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char *s1 = "Test1";
-	char *s2 = "Test2";
-
-	printf("%s", ft_strjoin(s1, s2));
-}
-*/

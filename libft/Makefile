@@ -6,7 +6,7 @@
 #    By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:38:41 by rureshet          #+#    #+#              #
-#    Updated: 2024/10/22 18:43:56 by rureshet         ###   ########.fr        #
+#    Updated: 2024/10/24 21:15:59 by rureshet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,10 @@ FUNCTIONS = ft_atoi \
 			ft_substr \
 			ft_tolower \
 			ft_toupper
-OBJ = $(patsubst %,%.o,$(FUNCTIONS))
+
 SRC = $(patsubst %,%.c,$(FUNCTIONS))
-CFLAGS = -Wall -Wextra -Werror
+OBJ = $(patsubst %,%.o,$(FUNCTIONS))
+CFLAGS = -Wall -Wextra 
 
 .PHONY: all clean fclean re
 
@@ -55,7 +56,7 @@ all: $(NAME)
 	@true
 
 $(NAME):
-	gcc -I ./ $(CFLAGS) -c $(SRC)
+	gcc $(CFLAGS) -c $(SRC) -I .
 	ar rcs $(NAME) $(OBJ)
 
 clean:
