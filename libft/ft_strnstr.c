@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:16:33 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/23 21:20:38 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:54:40 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	printf("%s", ft_strnstr("lorem ipsum dolor sit amet", "ipsum", 15));
-// }

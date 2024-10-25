@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:26:06 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 20:37:59 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 21:25:53 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,3 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	printf("%zu", ft_strlen("hjkhkjhjkhsdfjkh"));
-// }

@@ -6,11 +6,12 @@
 #    By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:38:41 by rureshet          #+#    #+#              #
-#    Updated: 2024/10/24 21:15:59 by rureshet         ###   ########.fr        #
+#    Updated: 2024/10/25 12:52:43 by rureshet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
 FUNCTIONS = ft_atoi \
 			ft_bzero \
 			ft_calloc \
@@ -46,9 +47,9 @@ FUNCTIONS = ft_atoi \
 			ft_tolower \
 			ft_toupper
 
-SRC = $(patsubst %,%.c,$(FUNCTIONS))
 OBJ = $(patsubst %,%.o,$(FUNCTIONS))
-CFLAGS = -Wall -Wextra 
+SRC = $(patsubst %,%.c,$(FUNCTIONS))
+CFLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 
@@ -56,7 +57,7 @@ all: $(NAME)
 	@true
 
 $(NAME):
-	gcc $(CFLAGS) -c $(SRC) -I .
+	gcc $(CFLAGS) -c $(SRC) -I./
 	ar rcs $(NAME) $(OBJ)
 
 clean:
@@ -66,3 +67,7 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)

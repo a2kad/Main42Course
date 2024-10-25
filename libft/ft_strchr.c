@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:00:11 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 19:26:25 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:53:46 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	char	*s;
-
-// 	s = "Test";
-// 	printf("%s\n", ft_strchr(s, 'e' + 256));
-// 	printf("%s", strchr(s, 'e' + 256));
-// }

@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:17:34 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 20:46:47 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:50:11 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strdup(const char *s)
 	i = 0;
 	j = ft_strlen(s);
 	dup = (char *)malloc(sizeof(char) * (j + 1));
+	if (!dup)
+		return (NULL);
 	while (i < j)
 	{
 		dup[i] = s[i];

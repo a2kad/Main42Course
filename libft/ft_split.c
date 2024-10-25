@@ -5,72 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 17:19:54 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 18:05:22 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/25 21:24:34 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/25 21:44:57 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static void	ft_wordwrite(char **arr, char const *str, char delim, int words_cnt)
+static void	ft_initiate_vars(size_t *i, int *j, int *s_word)
 {
-	unsigned int	i;
-	int				j;
-	size_t			word_len;
-
-	i = 0;
-	j = 0;
-	while (j < words_cnt)
-	{
-		while (str[i] == delim)
-			i++;
-		word_len = 0;
-		while (str[i + word_len] != delim && str[i + word_len])
-			word_len++;
-		arr[j] = ft_substr(str, i, word_len);
-		if (!arr[j])
-		{
-			while (--j >= 0)
-			{
-				free(arr[j]);
-			}
-			free(arr);
-		}
-		i += word_len;
-		j++;
-	}
+	*i = 0;
+	*j = 0;
+	*s_word = -1;
 }
 
-size_t	ft_wordscnt(char const *str, char delim)
+static void	*ft_free(char **strs, int count)
 {
-	int		prev_delim;
-	size_t	words;
-	int		i;
+	int	i;
 
-	prev_delim = 1;
-	words = 0;
 	i = 0;
-	while (str[i])
+	while (i < count)
 	{
-		if (str[i] == delim)
-			prev_delim = 1;
-		else if (prev_delim)
-			words++;
-		if (str[i] != delim)
-			prev_delim = 0;
+		free(strs[i]);
 		i++;
 	}
-	return (words);
+	free(strs);
+	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+static char	*fill_word(const char *str, int start, int end)
 {
-	size_t	words_cnt;
-	char	**arr;
+	char	*word;
+	int		i;
 
-	words_cnt = ft_wordscnt(s, c);
-	arr = (char **)ft_calloc((words_cnt + 1), (sizeof(char *)));
-	ft_wordwrite(arr, s, c, words_cnt);
-	return (arr);
+	i = 0;
+	word = malloc((end - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < end)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = 0;
+	return (word);
+}
+
+static int	word_count(const char *str, char c)
+{
+	int	count;
+	int	x;
+
+	count = 0;
+	x = 0;
+	while (*str)
+	{
+		if (*str != c && x == 0)
+		{
+			x = 1;
+			count++;
+		}
+		else if (*str == c)
+			x = 0;
+		str++;
+	}
+	return (count);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**res;
+	size_t	i;
+	int		j;
+	int		s_word;
+
+	ft_initiate_vars(&i, &j, &s_word);
+	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
+	if (!res)
+		return (NULL);
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && s_word < 0)
+			s_word = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && s_word >= 0)
+		{
+			res[j] = fill_word(s, s_word, i);
+			if (!(res[j]))
+				return (ft_free(res, j));
+			s_word = -1;
+			j++;
+		}
+		i++;
+	}
+	return (res);
 }

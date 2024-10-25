@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:20:28 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 19:03:43 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:27:10 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*ft_itoa(int n)
 
 	len = ft_numlen(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
 	if (n < 0)
 	{
 		str[0] = '-';

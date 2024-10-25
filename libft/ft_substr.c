@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:32:42 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/24 21:31:36 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/25 20:03:36 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	size_t	j;
-	char			*str;
+	size_t	str_len;
+	size_t	start_len;
+	char	*result;
 
-	i = 0;
-	j = 0;
-	if (!s)
+	if (len < 1)
+		return ((char *)ft_calloc(1, 1));
+	str_len = ft_strlen(s);
+	if (start >= str_len)
+		return ((char *)ft_calloc(1, 1));
+	start_len = ft_strlen(&s[start]);
+	if (start_len < len)
+		result = (char *)malloc((start_len + 1) * sizeof(char));
+	else
+		result = (char *)malloc((len + 1) * sizeof(char));
+	if (result == NULL)
 		return (NULL);
-	// if ((size_t)len > ft_strlen(s + start))
-	// 	(size_t)len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (str == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		if (i >= start && j <= len - 1)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
-	return (str);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	printf("%s", ft_substr("aa dfsdfsd fsdfsd sfd", 2, 5));
+	if (start_len < len)
+		ft_strlcpy(result, &s[start], start_len + 1);
+	else
+		ft_strlcpy(result, &s[start], len + 1);
+	return (result);
 }
