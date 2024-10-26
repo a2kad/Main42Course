@@ -6,13 +6,13 @@
 #    By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:38:41 by rureshet          #+#    #+#              #
-#    Updated: 2024/10/25 12:52:43 by rureshet         ###   ########.fr        #
+#    Updated: 2024/10/26 15:07:37 by rureshet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FUNCTIONS = ft_atoi \
+FILES = ft_atoi \
 			ft_bzero \
 			ft_calloc \
 			ft_isalnum \
@@ -46,18 +46,33 @@ FUNCTIONS = ft_atoi \
 			ft_substr \
 			ft_tolower \
 			ft_toupper
+B_FILES = ft_lstnew \
+			ft_lstadd_front \
+			ft_lstsize \
+			ft_lstlast \
+			ft_lstadd_back \
+			ft_lstdelone \
+			ft_lstclear \
+			ft_lstiter \
+			ft_lstmap \
 
-OBJ = $(patsubst %,%.o,$(FUNCTIONS))
-SRC = $(patsubst %,%.c,$(FUNCTIONS))
+SRC = $(addsuffix .c, ${FILES})
+B_SRC = $(addsuffix .c, ${B_FILES})
+
+OBJ = ${SRCS:.s=.o}
+B_OBJ = ${B_SRCS:.s=.o}
+
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
-	@true
+
+bonus:
+	$(CC) $(CFLAGS) -c $(B_SRC) -I./
+	ar rcs $(NAME) $(B_OBJ)
 
 $(NAME):
-	gcc $(CFLAGS) -c $(SRC) -I./
+	$(CC) $(CFLAGS) -c $(SRC) -I./
 	ar rcs $(NAME) $(OBJ)
 
 clean:
@@ -68,6 +83,4 @@ fclean: clean
 
 re: fclean all
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
+.PHONY: all  bonus clean fclean re
