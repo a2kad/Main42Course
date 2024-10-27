@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:19:26 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/25 19:53:26 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:58:20 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	*ft_memset(void *s, int c, size_t n)
 {
 	char	*p;
 
-	if (s == NULL)
-		return (NULL);
 	p = s;
 	while (n != 0)
 	{

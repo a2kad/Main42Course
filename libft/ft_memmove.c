@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:10:23 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/25 19:55:48 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:57:35 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
+	if (!d && !s)
+		return (NULL);
 	i = 0;
 	if (dest < src)
 	{
