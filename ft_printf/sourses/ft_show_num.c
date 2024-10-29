@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_show_num.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 22:00:11 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/29 17:46:21 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/29 19:58:12 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/29 21:55:36 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_show_num(int args)
 {
-	char	cc;
+	char	*zero;
+	int		i;
 
-	cc = (char)c;
-	while (*s != '\0')
+	if (!args)
 	{
-		if (*s == cc)
+		zero = "(null)";
+		write(1, &zero, 6);
+	}
+	else
+	{
+		while(args[i])
 		{
-			return ((char *)s);
+			write(1, &args[i], 1);
+			i++;
 		}
-		s++;
 	}
-	if (cc == '\0')
-	{
-		return ((char *)s);
-	}
-	return (0);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 22:00:11 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/29 17:46:21 by rureshet         ###   ########.fr       */
+/*   Created: 2024/10/29 17:26:31 by rureshet          #+#    #+#             */
+/*   Updated: 2024/10/29 21:54:22 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	cc;
+int	ft_printf(const char *str, ...);
+void	ft_show_num(int *args);
+void	ft_show_str(char *args);
 
-	cc = (char)c;
-	while (*s != '\0')
-	{
-		if (*s == cc)
-		{
-			return ((char *)s);
-		}
-		s++;
-	}
-	if (cc == '\0')
-	{
-		return ((char *)s);
-	}
-	return (0);
-}
+#endif
