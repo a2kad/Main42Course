@@ -6,28 +6,25 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:58:12 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/29 21:55:36 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:31:29 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_show_num(int args)
+void	ft_show_num(int num, int *length)
 {
-	char	*zero;
-	int		i;
-
-	if (!args)
+	if (num == -2147483648)
 	{
-		zero = "(null)";
-		write(1, &zero, 6);
+		write(1, "-2147483648", 11);
+		(*length) += 11;
 	}
-	else
+	if (num < 0)
 	{
-		while(args[i])
-		{
-			write(1, &args[i], 1);
-			i++;
-		}
+		write(1, "-", 1);
+		ft_show_num(num *= -1, length);
 	}
+	if (num > 9)
+		ft_show_num(num / 10, length);
+	ft_putchar((num % 10 + '0'), length);
 }

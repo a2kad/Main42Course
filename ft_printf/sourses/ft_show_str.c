@@ -6,17 +6,18 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:51:31 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/29 21:55:25 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:40:08 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_show_str(char args)
+void	ft_show_str(char *args, int *length)
 {
 	char	*zero;
 	int		i;
 
+	i = 0;
 	if (!args)
 	{
 		zero = "(null)";
@@ -24,9 +25,9 @@ void	ft_show_str(char args)
 	}
 	else
 	{
-		while(args[i])
+		while(args[i] != '\0')
 		{
-			write(1, &args[i], 1);
+			ft_putchar(args[i], length);
 			i++;
 		}
 	}
