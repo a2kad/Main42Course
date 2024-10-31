@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:26:43 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/31 16:59:14 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:06:39 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	ft_putchar(char c, int *length)
 
 void	ft_checkargs(char c, va_list *args, int *length)
 {
+	char	symb;
+
 	if (c == 'c')
 	{
-		char symb = va_arg(*args, int);
+		symb = va_arg(*args, int);
 		ft_show_str(&symb, length);
 	}
 	else if (c == 's')
@@ -75,6 +77,7 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	int	i;
+
 	i = ft_printf("%x-", 2555555);
 	ft_printf("%d", i);
 }
