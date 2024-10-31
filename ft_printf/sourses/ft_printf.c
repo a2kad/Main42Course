@@ -6,11 +6,13 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:26:43 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/30 22:20:45 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:59:14 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+#include <stdio.h>
 
 void	ft_putchar(char c, int *length)
 {
@@ -20,9 +22,12 @@ void	ft_putchar(char c, int *length)
 
 void	ft_checkargs(char c, va_list *args, int *length)
 {
-	if (c == 's')
-		ft_show_str(va_arg(*args, char *), length);
-	else if (c == 'c')
+	if (c == 'c')
+	{
+		char symb = va_arg(*args, int);
+		ft_show_str(&symb, length);
+	}
+	else if (c == 's')
 		ft_show_str(va_arg(*args, char *), length);
 	else if (c == 'd')
 		ft_show_num(va_arg(*args, int), length);
@@ -31,13 +36,13 @@ void	ft_checkargs(char c, va_list *args, int *length)
 	else if (c == 'i')
 		ft_show_num(va_arg(*args, int));
 	else if (c == 'u')
-		ft_show_num(va_arg(*args, int));
-	else if (c == 'x')
-		ft_show_num(va_arg(*args, int));
-	else if (c == 'X')
-		ft_show_num(va_arg(*args, int));
-	else if (c == '%')
 		ft_show_num(va_arg(*args, int));*/
+	else if (c == 'x')
+		ft_show_hex(va_arg(*args, unsigned int), length, c);
+	else if (c == 'X')
+		ft_show_hex(va_arg(*args, unsigned int), length, c);
+	else if (c == '%')
+		ft_putchar('%', length);
 }
 
 int	ft_printf(const char *str, ...)
@@ -47,6 +52,7 @@ int	ft_printf(const char *str, ...)
 	int		length;
 
 	i = 0;
+	length = 0;
 	va_start(args, str);
 	while (str[i] != '\0')
 	{
@@ -66,11 +72,9 @@ int	ft_printf(const char *str, ...)
 	return (length);
 }
 
-#include <stdio.h>
-
 int	main(void)
 {
 	int	i;
-	i = ft_printf("x%dx", 22222);
-	ft_printf("z%dz", i);
+	i = ft_printf("%x-", 2555555);
+	ft_printf("%d", i);
 }
