@@ -6,21 +6,13 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:26:43 by rureshet          #+#    #+#             */
-/*   Updated: 2024/10/31 17:06:39 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:47:23 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-#include <stdio.h>
-
-void	ft_putchar(char c, int *length)
-{
-	write(1, &c, 1);
-	(*length)++;
-}
-
-void	ft_checkargs(char c, va_list *args, int *length)
+void	ft_checkargs(char c, va_list *args, int *length, int *i)
 {
 	char	symb;
 
@@ -31,20 +23,20 @@ void	ft_checkargs(char c, va_list *args, int *length)
 	}
 	else if (c == 's')
 		ft_show_str(va_arg(*args, char *), length);
-	else if (c == 'd')
+	else if (c == 'd' || c == 'i')
 		ft_show_num(va_arg(*args, int), length);
-	/*else if (c == 'p')
-		ft_show_num(va_arg(*args, int));
-	else if (c == 'i')
-		ft_show_num(va_arg(*args, int));
+	else if (c == 'p')
+		ft_show_pointer(va_arg(*args, size_t), length);
 	else if (c == 'u')
-		ft_show_num(va_arg(*args, int));*/
+		ft_show_unsigned(va_arg(*args, unsigned int), length);
 	else if (c == 'x')
 		ft_show_hex(va_arg(*args, unsigned int), length, c);
 	else if (c == 'X')
 		ft_show_hex(va_arg(*args, unsigned int), length, c);
 	else if (c == '%')
 		ft_putchar('%', length);
+	else
+		(*i)--;
 }
 
 int	ft_printf(const char *str, ...)
@@ -61,7 +53,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			ft_checkargs(str[i], &args, &length);
+			ft_checkargs(str[i], &args, &length, &i);
 			i++;
 		}
 		else
@@ -74,10 +66,11 @@ int	ft_printf(const char *str, ...)
 	return (length);
 }
 
+#include <stdio.h>
 int	main(void)
 {
 	int	i;
 
-	i = ft_printf("%x-", 2555555);
-	ft_printf("%d", i);
+	i = printf("%.2s", "123456789");
+	printf("%d", i);
 }
