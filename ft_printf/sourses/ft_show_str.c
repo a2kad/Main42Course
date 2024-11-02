@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:51:31 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/01 15:02:51 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/02 20:44:35 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_show_str(char *args, int *length)
 	{
 		write(1, "(null)", 6);
 		(*length) += 6;
+		return ;
 	}
 	else
 	{

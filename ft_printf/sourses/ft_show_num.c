@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:58:12 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/01 14:43:39 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/02 21:03:52 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,18 @@ void	ft_show_hex(unsigned int num, int *length, char x_or_X)
 void	ft_show_pointer(size_t ptr, int *length)
 {
 	char		*base;
-	char		res[20];
+	char		res[25];
 	int			i;
 
-	write(1, "0x", 2);
-	(*length) += 2;
 	base = "0123456789abcdef";
 	if (ptr == 0)
 	{
-		ft_putchar('0', length);
+		write(1, "(nil)", 5);
+		(*length) += 5;
 		return ;
 	}
+	write(1, "0x", 2);
+	(*length) += 2;
 	i = 0;
 	while (ptr != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:26:43 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/01 16:47:23 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/02 20:55:48 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 void	ft_checkargs(char c, va_list *args, int *length, int *i)
 {
-	char	symb;
-
 	if (c == 'c')
-	{
-		symb = va_arg(*args, int);
-		ft_show_str(&symb, length);
-	}
+		ft_putchar(va_arg(*args, int), length);
 	else if (c == 's')
 		ft_show_str(va_arg(*args, char *), length);
 	else if (c == 'd' || c == 'i')
@@ -66,11 +61,11 @@ int	ft_printf(const char *str, ...)
 	return (length);
 }
 
-#include <stdio.h>
-int	main(void)
-{
-	int	i;
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	int	i;
 
-	i = printf("%.2s", "123456789");
-	printf("%d", i);
-}
+// 	i = ft_printf(" %p %p ", 0, 0);
+// 	ft_printf("%d", i);
+//  }
