@@ -6,7 +6,7 @@
 #    By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 19:32:12 by rureshet          #+#    #+#              #
-#    Updated: 2024/11/01 14:53:46 by rureshet         ###   ########.fr        #
+#    Updated: 2024/11/03 13:47:49 by rureshet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,5 +39,5 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean clean
+re: fclean all
 

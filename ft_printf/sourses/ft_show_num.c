@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:58:12 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/02 21:03:52 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:43:03 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_show_hex(unsigned int num, int *length, char x_or_X)
 	else
 		base = "0123456789ABCDEF";
 	i = 0;
+	if (num == 0)
+		ft_putchar('0', length);
 	while (num != 0)
 	{
 		res[i] = base[num % 16];
