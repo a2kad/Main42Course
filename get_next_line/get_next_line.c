@@ -6,32 +6,70 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/04 14:51:06 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:37:48 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-char	*get_next_line(int fd)
+size_t	line_count(char *txt)
 {
-	size_t	rf;
-	char	*txt;
-	int i;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
-	txt = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	rf = read(fd, txt, BUFFER_SIZE);
-	printf("%s", txt);
-	printf("\n%zu", rf);
-	return (txt);
+	count = 0;
+	while(txt[i])
+	{
+		if (txt[i] == '\n' || txt[i] == '\0')
+			count++;
+		i++;
+	}
+	return(count);
+}
+
+void	print_line(char *txt)
+{
+	int	i;
+
+	i = 0;
+	while (txt[i] != '\n' || txt[i] != '\0')
+	{
+		printf("%c", txt[i]);
+		i++;
+	}
+}
+
+char	*get_next_line(int fd)
+{
+	size_t	read_file;
+	char	*buffer;
+
+	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return NULL;
+	read_file = read(fd, buffer, BUFFER_SIZE);
+	if (read_file <= 0)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+	printf("%s", buffer);
+	printf("\n--%zu\n", read_file);
+	printf("\nLine:\n");
+	printf("\nLine count: %zu\n", line_count(buffer));
+	print_line(buffer);
+	return (buffer);
 }
 
 int	main(void)
 {
-	int	fd;
+	int		fd;
 	char	*txt;
+
 	fd = open("test.txt", O_RDONLY);
 	txt = get_next_line(fd);
-	printf("%s", txt);
+	// printf("%s", txt);
+	// printf("\n--%d", fd);
 }
