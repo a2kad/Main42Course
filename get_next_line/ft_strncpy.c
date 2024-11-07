@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 15:39:50 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/07 13:27:31 by rureshet         ###   ########.fr       */
+/*   Created: 2024/07/08 15:20:43 by rureshet          #+#    #+#             */
+/*   Updated: 2024/11/07 12:05:56 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-char	*ft_strncpy(char *dest, char *src, unsigned int length)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < length && src[i] != '\0')
+	while (i < n && src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < length)
+	while (i < n)
 	{
 		dest[i] = '\0';
 		i++;
@@ -30,24 +28,14 @@ char	*ft_strncpy(char *dest, char *src, unsigned int length)
 	return (dest);
 }
 
-char	*ft_strchr(const char *src, int c)
-{
-	char	c_cpy;
-
-	c_cpy = c;
-	while (*src != '\0')
-	{
-		if (*src == c_cpy)
-			return ((char *)src);
-		src++;
-	}
-	if (c_cpy == '\0')
-		return ((char *)src);
-	return (0);
-}
 #include <stdio.h>
-int main(void)
+#include <string.h>
+
+int 	main( void)
 {
-	const char *src = "Hello world";
-	printf("%s", ft_strchr(src , 'l'));
+	char	dest[50];
+	char	str[] = "Hello! How are you?";
+
+	printf("%s\n", ft_strncpy(dest, str, 17));
+	printf("%s\n", strncpy(dest, str, 18));
 }
