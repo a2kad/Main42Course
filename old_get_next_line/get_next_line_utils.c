@@ -6,13 +6,13 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:50 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/10 19:37:10 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:00:30 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char const *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
@@ -40,6 +40,24 @@ char	*ft_strdup(char *src)
 	return (dup);
 }
 
+char	*ft_strncpy(char *dest, char *src, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < length && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < length)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
+}
+
 char	*ft_strchr(const char *src, int c)
 {
 	char	c_cpy;
@@ -56,53 +74,36 @@ char	*ft_strchr(const char *src, int c)
 	return (0);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	j;
-	char	*result;
+	unsigned char		*dest_cpy;
+	const unsigned char	*src_cpy;
+	size_t				i;
 
-	result = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!result)
-		return (NULL);
+	dest_cpy = (unsigned char *)dest;
+	src_cpy = (unsigned char *)src;
 	i = 0;
-	j = 0;
-	while (s[i])
+	if (!dest_cpy && !src_cpy)
+		return (NULL);
+	if (dest_cpy < src_cpy)
 	{
-		if (i >= start && j < len)
+		while (i < n)
 		{
-			result[j] = s[i];
-			j++;
+			dest_cpy[i] = src_cpy[i];
+			i++;
 		}
-		i++;
 	}
-	result[j] = 0;
-	return (result);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
-		return (NULL);
-	while (s1[i])
+	else
 	{
-		str[i] = s1[i];
-		i++;
+		while (n--)
+			dest_cpy[n] = src_cpy[n];
 	}
-	while (s2[j])
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
-	return (str);
+	return (dest_cpy);
 }
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char dest[50];
+// 	const char *src = "Hello world";
+// 	printf("%s", (char *)ft_memmove(dest, src , 5));
+// }
