@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/11 19:10:50 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:21:37 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
-static char	*find_next_line(int fd, char *buf, char **backup)
+static char	*find_next_line(int fd, char *buf, char *backup)
 {
 	int		read_file;
 	char	*tmp;
@@ -27,19 +27,19 @@ static char	*find_next_line(int fd, char *buf, char **backup)
 		else if (read_file == 0)
 			break ;
 		buf[read_file] = '\0';
-		if (!(*backup))
-			*backup = ft_strdup("");
-		if (!*backup)
+		if (!backup)
+			backup = ft_strdup("");
+		if (!backup)
 			return (NULL);
-		tmp = *backup;
-		*backup = ft_strjoin(tmp, buf);
+		tmp = backup;
+		backup = ft_strjoin(tmp, buf);
 		free(tmp);
-		if (!*backup)
+		if (!backup)
 			return (NULL);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	return (*backup);
+	return (backup);
 }
 
 static char	*del_line(char *line)
@@ -66,37 +66,47 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buf;
-	static char	*backup;
+	static char	*backup[MAX_FD];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	line = find_next_line(fd, buf, &backup);
+	line = find_next_line(fd, buf, backup[fd]);
 	free (buf);
 	if (!line)
 		return (NULL);
-	backup = del_line(line);
+	backup[fd] = del_line(line);
 	return (line);
 }
 
 // int	main(void)
 // {
-// 	int		fd;
+// int		fd1, fd2;
 // 	char	*line;
 
-// 	fd = open("read_error.txt", O_RDONLY);
-// 	if (fd == -1)
+// 	fd1 = open("test1.txt", O_RDONLY);
+// 	fd2 = open("test.txt", O_RDONLY);
+// 	if (fd1 == -1 || fd2 == -1)
 // 	{
-// 		printf("Error");
+// 		printf("Error opening files\n");
 // 		return (1);
 // 	}
-// 	while ((line = get_next_line(fd)) != NULL)
+// 	printf("Reading from file1.txt:\n");
+// 	while ((line = get_next_line(fd1)) != NULL)
 // 	{
-// 		printf("%s", line);
+// 		printf("%s\n", line);
 // 		free(line);
 // 	}
-// 	close(fd);
+// 	close(fd1);
+
+// 	printf("\nReading from file2.txt:\n");
+// 	while ((line = get_next_line(fd2)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd2);
 // 	return (0);
 // }
