@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/11 19:10:50 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/12 19:50:13 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ static char	*find_next_line(int fd, char *buf, char **backup)
 		else if (read_file == 0)
 			break ;
 		buf[read_file] = '\0';
-		if (!(*backup))
-			*backup = ft_strdup("");
 		if (!*backup)
-			return (NULL);
+			*backup = ft_strdup("");
+		// if (!*backup)
+		// 	return (NULL);
 		tmp = *backup;
 		*backup = ft_strjoin(tmp, buf);
 		free(tmp);
-		if (!*backup)
-			return (NULL);
+		// if (!*backup)
+		// 	return (NULL);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
@@ -52,7 +52,7 @@ static char	*del_line(char *line)
 		count++;
 	if (line[count] == '\0')
 		return (NULL);
-	remaining = ft_substr(line, count + 1, ft_strlen(line) - count -1);
+	remaining = ft_substr(line, count + 1, ft_strlen(line) - count);
 	if (*remaining == '\0')
 	{
 		free(remaining);
@@ -84,7 +84,8 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {
 // 	int		fd;
-// 	char	*line;
+// 	//char	*line;
+// 	int i = 0;
 
 // 	fd = open("read_error.txt", O_RDONLY);
 // 	if (fd == -1)
@@ -92,10 +93,11 @@ char	*get_next_line(int fd)
 // 		printf("Error");
 // 		return (1);
 // 	}
-// 	while ((line = get_next_line(fd)) != NULL)
+// 	while (i < 2)
 // 	{
-// 		printf("%s", line);
-// 		free(line);
+// 		printf("%s", get_next_line(fd));
+// 		i++;
+// 		//free(line);
 // 	}
 // 	close(fd);
 // 	return (0);
