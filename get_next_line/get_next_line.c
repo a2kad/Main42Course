@@ -6,98 +6,123 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/12 19:50:13 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:48:28 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-static char	*find_next_line(int fd, char *buf, char **backup)
+char	*read_into_buffer(int fd, char *buffer)
 {
 	int		read_file;
-	char	*tmp;
+	char	*buf_tmp;
 
+	buf_tmp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf_tmp)
+		return (NULL);
 	read_file = 1;
-	while (read_file > 0)
+	while (!(buffer && ft_strchr(buffer, '\n')) && read_file != 0)
 	{
-		read_file = read(fd, buf, BUFFER_SIZE);
+		read_file = read(fd, buf_tmp, BUFFER_SIZE);
 		if (read_file == -1)
+		{
+			free(buf_tmp);
 			return (NULL);
-		else if (read_file == 0)
-			break ;
-		buf[read_file] = '\0';
-		if (!*backup)
-			*backup = ft_strdup("");
-		// if (!*backup)
-		// 	return (NULL);
-		tmp = *backup;
-		*backup = ft_strjoin(tmp, buf);
-		free(tmp);
-		// if (!*backup)
-		// 	return (NULL);
-		if (ft_strchr(buf, '\n'))
-			break ;
+		}
+		buf_tmp[read_file] = '\0';
+		buffer = ft_strjoin(buffer, buf_tmp);
 	}
-	return (*backup);
+	free(buf_tmp);
+	return (buffer);
 }
 
-static char	*del_line(char *line)
+char	*find_line(char *buffer)
 {
-	size_t	count;
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*del_line(char *buffer)
+{
+	int		i;
+	int		j;
 	char	*remaining;
 
-	count = 0;
-	while (line[count] != '\n' && line[count] != '\0')
-		count++;
-	if (line[count] == '\0')
-		return (NULL);
-	remaining = ft_substr(line, count + 1, ft_strlen(line) - count);
-	if (*remaining == '\0')
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
 	{
-		free(remaining);
-		remaining = NULL;
+		free(buffer);
+		return (NULL);
 	}
-	line[count + 1] = '\0';
+	remaining = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!remaining)
+		return (NULL);
+	i++;
+	j = 0;
+	while (buffer[i])
+		remaining[j++] = buffer[i++];
+	remaining[j] = '\0';
+	free(buffer);
 	return (remaining);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char		*buf;
-	static char	*backup;
+	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
+	buffer = read_into_buffer(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	line = find_next_line(fd, buf, &backup);
-	free (buf);
-	if (!line)
-		return (NULL);
-	backup = del_line(line);
+	line = find_line(buffer);
+	buffer = del_line(buffer);
 	return (line);
 }
 
 // int	main(void)
 // {
 // 	int		fd;
-// 	//char	*line;
-// 	int i = 0;
+// 	int		i;
+// 	char	*line;
 
-// 	fd = open("read_error.txt", O_RDONLY);
+// 	fd = open("tests/read_error.txt", O_RDONLY);
 // 	if (fd == -1)
 // 	{
 // 		printf("Error");
-// 		return (1);
+// 		return (0);
 // 	}
-// 	while (i < 2)
+// 	i = 1;
+// 	while ((line = get_next_line(fd)) != NULL)
 // 	{
-// 		printf("%s", get_next_line(fd));
+// 		printf("Line %d -> %s\n", i, line);
 // 		i++;
-// 		//free(line);
+// 		free(line);
 // 	}
 // 	close(fd);
 // 	return (0);

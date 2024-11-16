@@ -6,114 +6,139 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/12 16:58:06 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:48:16 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include <stdio.h>
+#include "get_next_line.h"
 
-static char	*find_next_line(int fd, t_gnl *gnl)
+char	*read_into_buffer(int fd, char *buffer)
 {
 	int		read_file;
-	char	*tmp;
+	char	*buf_tmp;
 
+	buf_tmp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf_tmp)
+		return (NULL);
 	read_file = 1;
-	while (read_file > 0)
+	while (!(buffer && ft_strchr(buffer, '\n')) && read_file != 0)
 	{
-		read_file = read(fd, gnl->buf, BUFFER_SIZE);
+		read_file = read(fd, buf_tmp, BUFFER_SIZE);
 		if (read_file == -1)
+		{
+			free(buf_tmp);
 			return (NULL);
-		else if (read_file == 0)
-			break ;
-		gnl->buf[read_file] = '\0';
-		if (!gnl->backup)
-			gnl->backup = ft_strdup("");
-		if (!gnl->backup)
-			return (NULL);
-		tmp = gnl->backup;
-		gnl->backup = ft_strjoin(tmp, gnl->buf);
-		free(tmp);
-		if (!gnl->backup)
-			return (NULL);
-		if (ft_strchr(gnl->buf, '\n'))
-			break ;
+		}
+		buf_tmp[read_file] = '\0';
+		buffer = ft_strjoin(buffer, buf_tmp);
 	}
-	return (gnl->backup);
+	free(buf_tmp);
+	return (buffer);
 }
 
-static char	*del_line(char *line)
+char	*find_line(char *buffer)
 {
-	size_t	count;
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*del_line(char *buffer)
+{
+	int		i;
+	int		j;
 	char	*remaining;
 
-	count = 0;
-	while (line[count] != '\n' && line[count] != '\0')
-		count++;
-	if (line[count] == '\0')
-		return (NULL);
-	remaining = ft_substr(line, count + 1, ft_strlen(line) - count -1);
-	if (*remaining == '\0')
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
 	{
-		free(remaining);
-		remaining = NULL;
+		free(buffer);
+		return (NULL);
 	}
-	line[count + 1] = '\0';
+	remaining = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!remaining)
+		return (NULL);
+	i++;
+	j = 0;
+	while (buffer[i])
+		remaining[j++] = buffer[i++];
+	remaining[j] = '\0';
+	free(buffer);
 	return (remaining);
 }
 
 char	*get_next_line(int fd)
 {
-	char			*line;
-	static t_gnl	*gnl[MAX_FD];
+	char		*line;
+	static char	*buffer[4096];
 
-	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!gnl[fd])
-	{
-		gnl[fd] = malloc(sizeof(t_gnl));
-		if (!gnl[fd])
-			return (NULL);
-		gnl[fd]->buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!gnl[fd]->buf)
-			return (NULL);
-		gnl[fd] = NULL;
-	}
-	t_gnl *gnls = gnl[fd];
-	line = find_next_line(fd, gnls);
-	//free (gnl[fd]->buf);
-	if (!line)
+	buffer[fd] = read_into_buffer(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	gnls->backup = del_line(line);
+	line = find_line(buffer[fd]);
+	buffer[fd] = del_line(buffer[fd]);
 	return (line);
 }
 
-int	main(void)
-{
-int		fd1, fd2;
-	char	*line;
+// int	main(void)
+// {
+// 	int		fd1;
+// 	int		fd2;
+// 	int		i;
+// 	char	*line;
 
-	fd1 = open("test1.txt", O_RDONLY);
-	fd2 = open("test.txt", O_RDONLY);
-	if (fd1 == -1 || fd2 == -1)
-	{
-		printf("Error opening files\n");
-		return (1);
-	}
-	printf("Reading from file1.txt:\n");
-	while ((line = get_next_line(fd1)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	close(fd1);
-
-	printf("\nReading from file2.txt:\n");
-	while ((line = get_next_line(fd2)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	close(fd2);
-	return (0);
-}
+// 	fd1 = open("tests/read_error.txt", O_RDONLY);
+// 	if (fd1 == -1)
+// 	{
+// 		printf("Error");
+// 		return (0);
+// 	}
+// 	fd2 = open("tests/test1.txt", O_RDONLY);
+// 	if (fd2 == -1)
+// 	{
+// 		printf("Error");
+// 		return (0);
+// 	}
+// 	i = 1;
+// 	while ((line = get_next_line(fd1)) != NULL)
+// 	{
+// 		printf("Line %d -> %s\n", i, line);
+// 		i++;
+// 		free(line);
+// 	}
+// 	i = 1;
+// 	while ((line = get_next_line(fd2)) != NULL)
+// 	{
+// 		printf("Line %d -> %s\n", i, line);
+// 		i++;
+// 		free(line);
+// 	}
+// 	close(fd1);
+// 	close(fd2);
+// 	return (0);
+// }
