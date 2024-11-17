@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/16 18:48:28 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:50:53 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_into_buffer(int fd, char *buffer)
 	int		read_file;
 	char	*buf_tmp;
 
-	buf_tmp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf_tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf_tmp)
 		return (NULL);
 	read_file = 1;
@@ -27,6 +27,8 @@ char	*read_into_buffer(int fd, char *buffer)
 		if (read_file == -1)
 		{
 			free(buf_tmp);
+			if (buffer)
+				free(buffer);
 			return (NULL);
 		}
 		buf_tmp[read_file] = '\0';

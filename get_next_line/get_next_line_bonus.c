@@ -6,7 +6,7 @@
 /*   By: rureshet <rureshet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:39:53 by rureshet          #+#    #+#             */
-/*   Updated: 2024/11/16 18:48:16 by rureshet         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:49:50 by rureshet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_into_buffer(int fd, char *buffer)
 	int		read_file;
 	char	*buf_tmp;
 
-	buf_tmp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf_tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf_tmp)
 		return (NULL);
 	read_file = 1;
@@ -27,6 +27,8 @@ char	*read_into_buffer(int fd, char *buffer)
 		if (read_file == -1)
 		{
 			free(buf_tmp);
+			if (buffer)
+				free(buffer);
 			return (NULL);
 		}
 		buf_tmp[read_file] = '\0';
@@ -118,10 +120,11 @@ char	*get_next_line(int fd)
 // 		printf("Error");
 // 		return (0);
 // 	}
-// 	fd2 = open("tests/test1.txt", O_RDONLY);
+// 	fd2 = open("tests/giant_line_nl.txt", O_RDONLY);
 // 	if (fd2 == -1)
 // 	{
 // 		printf("Error");
+
 // 		return (0);
 // 	}
 // 	i = 1;
